@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import com.rubypaper.biz.domain.Employee;
+import com.rubypaper.biz.domain.EmployeeId;
 
 public class EmployeeServiceClient {
 	public static void main(String[] args) {
@@ -19,13 +20,9 @@ public class EmployeeServiceClient {
 		EntityTransaction tx = em.getTransaction();
 		
 		try {
-			tx.begin();
-			
-			Employee employee = new Employee();
-			employee.setName("둘리");
-			em.persist(employee);
-			
-			tx.commit();
+			EmployeeId empId = new EmployeeId(1L, "guest1234");
+			Employee findEmployee = em.find(Employee.class, empId);
+			System.out.println("검색된 직원 정보:"+ findEmployee.toString());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
