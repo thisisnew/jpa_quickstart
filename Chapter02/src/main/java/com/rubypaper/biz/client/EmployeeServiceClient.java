@@ -19,26 +19,16 @@ public class EmployeeServiceClient {
 		EntityTransaction tx = em.getTransaction();
 		
 		try {
-			Employee employee = new Employee();
-			employee.setId(4L);
-			employee.setName("둘리");
-			employee.setMailId("gurum");
-			employee.setStartDate(new Date());
-			employee.setTitle("과장");
-			employee.setDeptName("총무부");
-			employee.setSalary(2500.00);
-			employee.setCommissionPct(12.50);
-			
 			tx.begin();
 			
+			Employee employee = new Employee();
+			employee.setName("둘리");
 			em.persist(employee);
 			
 			tx.commit();
 			
 		} catch (Exception e) {
-			
 			e.printStackTrace();
-			
 			tx.rollback();
 		} finally {
 			em.close();
