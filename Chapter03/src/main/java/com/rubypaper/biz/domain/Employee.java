@@ -9,13 +9,12 @@ import javax.persistence.Table;
 import lombok.Data;
 
 
-
 @Data
 @Entity
 @Table(name="S_EMP")
 public class Employee {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue //(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;

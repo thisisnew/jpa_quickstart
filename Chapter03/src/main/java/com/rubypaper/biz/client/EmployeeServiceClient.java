@@ -1,5 +1,7 @@
 package com.rubypaper.biz.client;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -17,22 +19,22 @@ public class EmployeeServiceClient {
 		EntityTransaction tx = em.getTransaction();
 		
 		try {
-			Employee employee = new Employee();
-			employee.setName("둘리");
-			
 			tx.begin();
-			em.persist(employee);
+			
+			for(int i = 1; i<=10; i++) {
+				Employee emp = new Employee();
+				emp.setName("직원-"  + i);
+				em.persist(emp);
+			}
+			
 			tx.commit();
 			
-			em.clear();
+			String jpql  = "SELECT e FROM Employee e ORDER BY e.id DESC";
+			List<Employee> empList = em.createQuery(jpql, Employee.class).getResultList();
 			
-			tx.begin();
-			employee.setName("똘리");
-			Employee mergedEmp = em.merge(employee);
-			tx.commit();
-			
-			System.out.println("employee 관리:" + em.contains(employee));
-			System.out.println("mergedEmp 관리:" + em.contains(mergedEmp));
+			for(Employee emp :  empList) {
+				System.out.println("------>" +emp.toString());
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
