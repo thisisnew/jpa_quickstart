@@ -1,13 +1,12 @@
-create table s_emp(
-	id number(7) constraint s_emp_id_nn not null,
-	name varchar2(25) constraint s_emp_name_nn not null,
-	start_date date,
-	title varchar2(25),
-	dept_name varchar2(25),
-	salary number(11,2),
-	constraint s_emp_id_pk primary key (id)
+CREATE TABLE s_emp(
+id		NUMBER(7)  	CONSTRAINT s_emp_id_nn NOT NULL, 	-- Á÷¿ø ¾ÆÀÌµğ
+name		VARCHAR2(25)   	CONSTRAINT s_emp_name_nn NOT NULL,	-- Á÷¿ø ÀÌ¸§
+start_date	DATE,							-- ÀÔ»çÀÏ
+title	VARCHAR2(25),						-- Á÷±Ş
+dept_name	VARCHAR2(25),						-- ºÎ¼­ ÀÌ¸§
+salary	NUMBER(11, 2),						-- ±Ş¿©
+CONSTRAINT s_emp_id_pk PRIMARY KEY (id)
 );
 
-insert into s_emp values(1,'ì•ˆì€ê²½','2002-12-03', 'ì˜ì—…ëŒ€í‘œì´ì‚¬', 'ì˜ì—…ë¶€', 2500);
-
-select * from s_emp;
+INSERT INTO s_emp VALUES (1, '¾ÈÀº°æ', '2002-12-03', '¿µ¾÷´ëÇ¥ÀÌ»ç', '¿µ¾÷ºÎ', 2500);
+SELECT * FROM s_emp;

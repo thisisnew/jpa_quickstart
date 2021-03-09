@@ -13,21 +13,20 @@ import lombok.Data;
 @Entity
 @Table(name="S_EMP")
 public class EmployeeVO {
-	
 	@Id
 	private Long id;
 	
 	private String name;
 	
-	@Column(name = "START_DATE")
+	@Column(name="START_DATE")
 	private Timestamp startDate;
 	
 	private String title;
 	
-	@Column(name = "DEPT_NAME")
+	@Column(name="DEPT_NAME")	
 	private String deptName;
 	
-	private Double salary;
+	private Double salary;	
 	
 	private String email;
 }
