@@ -26,6 +26,9 @@
 		<property name="password" value=""></property>
 	</bean>
 	
+	<!-- JPA 예외를 스프링 예외로 변환시켜주는 객체 -->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"></bean>
+
 	<!-- EntityManager 공장 (id가 entityManagerFactory로 고정) -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -46,5 +49,17 @@
 			</props>
 		</property>
 	</bean>
+
+	<!-- 트랜잭션 매니저 등록(id가 transactionManager로 고정) -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Annotation 기반의 트랜젝션 처리 설정 -->
+	<tx:annotation-driven />
+
+	<!-- 컴포넌트 스캔(@Service, @Repository 객체 생성) -->
+	<context:component-scan	base-package="com.rubypaper.shopping.biz" />
 
 </beans>
